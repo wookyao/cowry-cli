@@ -1,0 +1,22 @@
+{
+  "name": "corwy-cli",
+  "version": "1.0.0",
+  "description": "A simple CLI for vue",
+  "bin": {
+    "cowry": "./index.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "xu yao",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "commander": "^9.5.0",
+    "inquirer": "^9.1.4",
+    "mri": "^1.2.0"
+  }
+}
