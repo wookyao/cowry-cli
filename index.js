@@ -21,8 +21,6 @@ const args = mri(flags, {
 
 const { _, ...args4command } = args;
 
-console.log(args4command, "args4command", _);
-
 const len4Flags = flags.length;
 
 if (!len4Flags || args4command.help) {
