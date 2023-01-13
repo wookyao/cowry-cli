@@ -1,7 +1,7 @@
 import init from "./init.js";
-import help from "./help.js";
+import list from "./list.js";
 
 export default {
   init,
-  help,
+  list,
 };

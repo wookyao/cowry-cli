@@ -3,6 +3,7 @@
 import chalk from "chalk";
 import mri from "mri";
 import commands from "./libs/commands/index.js";
+import help from "./libs/help.js";
 import readPackageJson from "./libs/read-package.js";
 import { getValidCommands } from "./utils/index.js";
 
@@ -43,15 +44,4 @@ if (command) {
     commands[command]();
   }
 } else {
-}
-
-const _Len = _.length;
-if (_Len) {
-  if (_.includes("init") && _Len == 1) {
-    init();
-  }
-
-  if (_.includes("list") && _Len == 1) {
-    init();
-  }
 }
