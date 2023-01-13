@@ -82,28 +82,32 @@ async function init() {
   } catch (error) {}
 
   const answers = await prompt(templateList, templateNames);
-
   downloadFile(answers);
 }
 
 // 下载分支
 function downloadFile({ templateName, projectName }) {
+  const start_time = Date.now();
   const spinner = ora("项目模板下载中...");
   spinner.start();
 
-  const repoName = `${GITHUB_NAME}/${templateName}.git`;
+  const repoName = `${GITHUB_NAME}/${templateName}`;
   return new Promise((resolve, reject) => {
     try {
-      download(repoName, projectName, { clone: true }, (err) => {
+      download(repoName, projectName, (err) => {
         if (err) {
           spinner.fail();
           logger.log(chalk.red(`项目生成失败：${err}`));
           return;
         }
         spinner.succeed();
+        logger.success(
+          "Done   " + chalk.green(`${(Date.now() - start_time) / 1000}s`)
+        );
       });
     } catch (error) {
       console.log(error, "error");
+      spinner.stop();
     }
   });
 }
