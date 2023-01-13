@@ -101,9 +101,15 @@ function downloadFile({ templateName, projectName }) {
           return;
         }
         spinner.succeed();
-        logger.success(
-          "Done   " + chalk.green(`${(Date.now() - start_time) / 1000}s`)
+
+        console.log(
+          "   Done   " + chalk.green(`${(Date.now() - start_time) / 1000}s`)
         );
+        console.log();
+        console.log("   run:");
+        console.log(`      cd ${projectName}`);
+        console.log(`      yarn`);
+        console.log();
       });
     } catch (error) {
       console.log(error, "error");
