@@ -6,6 +6,7 @@ import ora from "ora";
 import { getTemplateList } from "./list.js";
 import { GITHUB_NAME } from "../../config/index.js";
 import logger from "../../utils/logger.js";
+import getUser from "../../utils/get-user.js";
 
 // 展示模版列表
 function showTemplate(list) {
@@ -24,46 +25,51 @@ function showTemplate(list) {
 
 // 命令行交互
 async function prompt(templateList, templateNames) {
-  return new Promise((resolve, reject) => {
-    inquirer
-      .prompt([
-        {
-          type: "input",
-          name: "projectName",
-          message: "请输入项目名称：",
-          validate(val) {
-            if (val === "") {
-              console.log(chalk.yellow("项目名称不能为空."));
-              return;
-            } else {
-              return true;
-            }
-          },
-        },
-        {
-          type: "input",
-          name: "templateName",
-          message: "请选择模版：",
-          validate(val) {
-            if (val === "") {
-              console.log(chalk.yellow("模板名称不能为空"));
-              return;
-            }
-            if (templateNames.indexOf(val) == -1) {
-              console.log();
-              console.log(chalk.red("无此模板，请从下列模版中创建："));
-              console.log();
-              showTemplate(templateList);
-              return;
-            }
+  const promptOpts = [
+    {
+      type: "input",
+      name: "projectName",
+      message: "请输入项目名称：",
+      validate(val) {
+        if (val === "") {
+          console.log(chalk.yellow("项目名称不能为空."));
+          return;
+        } else {
+          return true;
+        }
+      },
+    },
+    {
+      type: "input",
+      name: "templateName",
+      message: "请选择模版：",
+      validate(val) {
+        if (val === "") {
+          console.log(chalk.yellow("模板名称不能为空"));
+          return;
+        }
+        if (templateNames.indexOf(val) == -1) {
+          console.log();
+          console.log(chalk.red("无此模板，请从下列模版中创建："));
+          console.log();
+          showTemplate(templateList);
+          return;
+        }
 
-            return true;
-          },
-        },
-      ])
-      .then((res) => {
-        resolve(res);
-      });
+        return true;
+      },
+    },
+    {
+      type: "input",
+      name: "description",
+      message: "请输入项目描述",
+    },
+  ];
+
+  return new Promise((resolve, reject) => {
+    inquirer.prompt(promptOpts).then((res) => {
+      resolve(res);
+    });
   });
 }
 
@@ -81,8 +87,10 @@ async function init() {
     templateNames = templateList.map((item) => item.name);
   } catch (error) {}
 
-  const answers = await prompt(templateList, templateNames);
-  downloadFile(answers);
+  // const answers = await prompt(templateList, templateNames);
+  const user = getUser();
+  console.log(user);
+  // downloadFile(answers);
 }
 
 // 下载分支
