@@ -1,5 +1,5 @@
 {
-  "name": "corwy-cli",
+  "name": "cowry-cli",
   "version": "1.0.0",
   "description": "A simple CLI for vue",
   "bin": {
