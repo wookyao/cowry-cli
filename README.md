@@ -19,3 +19,9 @@
 ```bash
   cowry init [template-name] [folder-name]
 ```
+
+- 自定义模版路径
+
+```bash
+  cowry init -s [template-url] [folder-name]
+```
