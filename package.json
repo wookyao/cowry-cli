@@ -9,7 +9,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "cowry",
+    "cli",
+    "vue"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wookyao/cowry-cli.git"
+  },
+  "homepage": "https://github.com/wookyao/cowry-cli#readme",
   "author": "xu yao",
   "license": "MIT",
   "type": "module",
