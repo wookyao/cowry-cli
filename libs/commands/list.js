@@ -27,7 +27,7 @@ export function getTemplateList() {
 }
 
 export default function list() {
-  var spinner = ora("downloading template...");
+  var spinner = ora("initialization template...");
   spinner.start();
   getTemplateList().then(
     function (resp) {

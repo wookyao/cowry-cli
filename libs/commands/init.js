@@ -87,10 +87,9 @@ async function init() {
     templateNames = templateList.map((item) => item.name);
   } catch (error) {}
 
-  // const answers = await prompt(templateList, templateNames);
-  const user = getUser();
-  console.log(user);
-  // downloadFile(answers);
+  const answers = await prompt(templateList, templateNames);
+  // const user = getUser();
+  downloadFile(answers);
 }
 
 // 下载分支
